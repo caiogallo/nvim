@@ -1,6 +1,7 @@
-local function attach(opts) {
-
-}
+--
+-- local function attach(opts) {
+--
+--}
 
 return {
     "neovim/nvim-lspconfig",
