@@ -12,6 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	spec = "gallo.lazy"
+        spec = "gallo.lazy"
 })
 
