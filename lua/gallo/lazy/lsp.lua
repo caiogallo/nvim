@@ -50,15 +50,27 @@ return {
                 ["rust_analyzer"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.rust_analyzer.setup({
-                        capabilities = capabilities,
+                        on_attach = function(client, bufnr)
+                            vim.lsp.inlay_hint.enable(true, {bufnr = bufnr})
+                        end,
                         settings = {
-                            ["rust_analyzer"] = {
-                                assist = {
-                                    importGranularity = "module",
-                                    importPrefix = "by_self",
+                            ["rust-analyzer"] = {
+                                imports = {
+                                    granularity = {
+                                        group = "module",
+                                    },
+                                    prefix = "self",
+                                },
+                                cargo = {
+                                    buildScripts = {
+                                        enable = true,
+                                    },
+                                },
+                                procMacro = {
+                                    enable = true
                                 },
                             }
-                        },
+                        }
                     })
                 end,
             }
@@ -69,8 +81,7 @@ return {
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    --require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                    vim.fn["vsnip#anonymous"](args.body)
+                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                 end,
             },
             mapping = cmp.mapping.preset.insert({
@@ -79,17 +90,24 @@ return {
                 ['<C-y>'] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
-            sources = {
+            sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
+                { name = 'luasnip' }, -- For luasnip users.
+            }, {
                 { name = 'buffer' },
-                { name = 'path' },
-            }
---            sources = cmp.config.sources({
---                { name = 'nvim_lsp' },
---                { name = 'luasnip' }, -- For luasnip users.
---            }, {
---                { name = 'buffer' },
---            })
+            })
+        })
+
+        vim.diagnostic.config({
+            update_in_insert = true,
+            float = {
+                focusable = false,
+                style = "minimal",
+                border = "rounded",
+                source = "always",
+                header = "",
+                prefix = "",
+            },
         })
     end
 }
