@@ -60,12 +60,12 @@ return {
                     auto_focus = true,
                 },
                 -- using neovim 0.10 inlay hints
-                inlay_hints = { 
+                inlay_hints = {
                     auto = false
                 }
             },
         })
-        
+
         -- on-typing autocomplete
         local cmp = require('cmp')
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
