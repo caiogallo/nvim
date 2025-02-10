@@ -7,5 +7,6 @@
   "nvim-lspconfig": { "branch": "master", "commit": "637293ce23c6a965d2f11dfbf92f604bb1978052" },
   "nvim-treesitter": { "branch": "master", "commit": "3973f53d7a8c4b87151dc3fd0e3d654aaa036c31" },
   "rose-pine": { "branch": "main", "commit": "42f0724e0bca9f57f0bcfa688787c37b8d4befe8" },
-  "rust-tools.nvim": { "branch": "master", "commit": "676187908a1ce35ffcd727c654ed68d851299d3e" }
+  "rust-tools.nvim": { "branch": "master", "commit": "676187908a1ce35ffcd727c654ed68d851299d3e" },
+  "trouble.nvim": { "branch": "main", "commit": "6f380b8826fb819c752c8fd7daaee9ef96d4c689" }
 }
