@@ -24,3 +24,6 @@ vim.opt.isfname:append("@-@") -- aaaand this?
 vim.opt.updatetime = 50 -- this too?
 
 vim.opt.colorcolumn = "80"
+
+-- Integrate macos clipboard whith "* clipboard
+vim.opt.clipboard = "unnamedplus"
