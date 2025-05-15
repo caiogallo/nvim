@@ -15,12 +15,23 @@ return {
 				},
 			},
 		},
-		event = { "BufWritePre", "BufNewFile" },
 		config = function()
 			local capabilities = require('blink.cmp').get_lsp_capabilities()
 			require("lspconfig").lua_ls.setup { capabilities = capabilities }
 			require("lspconfig").bashls.setup { capabilities = capabilities }
-			require("lspconfig").golangci_lint_ls.setup { capabilities = capabilities }
+			require("lspconfig").gopls.setup {
+				capabilities = capabilities,
+				settings = {
+					gopls = {
+						completeUnimported = true,
+						usePlaceholders = true,
+						analyses = {
+							unusedparams = true,
+							unusedvariables = true,
+						}
+					}
+				}
+			}
 
 
 			vim.api.nvim_create_autocmd('LspAttach', {
